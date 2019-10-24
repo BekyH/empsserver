@@ -11,6 +11,7 @@ const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const Users = require('./models/users');
 const userRouter = require('./routes/users');
+const compRouter = require('./routes/companies');
 const url = 'mongodb://localhost:27017/aait';
 const connect = mongoose.connect(url);
 
@@ -22,7 +23,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //app.use(cors);
 app.use('/users',userRouter);
-
+app.use('/companies',compRouter);
 
 connect.then((db)=>{
     console.log('connected correctly to the server');
