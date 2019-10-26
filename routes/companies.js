@@ -1,5 +1,5 @@
 const express = require('express');
-const cors  = require('cors');
+const cors  = require('./cors');
 const bodyParser = require('body-parser');
 const companies = require('../models/companies');
 
@@ -17,7 +17,7 @@ companyRouter.route('/')
         },(err)=>next(err))
         .catch((err)=>next(err))
 })
-.post(cors.corswithoptions,(req,res,next)=>{
+.post(cors.corsWithOptions,(req,res,next)=>{
     companies.create(req.body)
     .then((comp)=>{
         console.log('company added',comp);
@@ -28,3 +28,4 @@ companyRouter.route('/')
     },(err)=>next(err))
     .catch((err)=>next(err))
 });
+module.exports  = companyRouter;

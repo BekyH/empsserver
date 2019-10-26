@@ -1,11 +1,11 @@
 const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
-var cors = require('cors')
+
 const hostname = 'localhost';
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+// var session = require('express-session');
 const port = 3000;
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
@@ -14,6 +14,12 @@ const userRouter = require('./routes/users');
 const compRouter = require('./routes/companies');
 const url = 'mongodb://localhost:27017/aait';
 const connect = mongoose.connect(url);
+//for enabling cors
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+//   });
 
 const app = express();
 app.use(morgan('dev'));
