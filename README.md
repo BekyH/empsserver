@@ -1,4 +1,4 @@
-registerationsystemserver
+empsserver
 this project is built using express and mongodb as its database.
 to generate project
 express registerationserver
