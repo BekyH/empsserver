@@ -1,36 +1,36 @@
 const express = require('express');
 const cors  = require('./cors');
 const bodyParser = require('body-parser');
-const companies = require('../models/companies');
+const employees = require('../models/employees');
 
-const companyRouter = express.Router();
-companyRouter.use(bodyParser.json());
-companyRouter.route('/')
-.options(cors.corsWithOptions, (req, res) => { 
-    res.sendStatus(200); })
+const employeeRouter = express.Router();
+employeeRouter.use(bodyParser.json());
+employeeRouter.route('/')
+// .options(cors.corsWithOptions, (req, res) => { 
+//     res.sendStatus(200); })
 .get((req,res,next)=>{
-        companies.find({})
-        .then((comps)=>{
+        employees.find({})
+        .then((emps)=>{
             res.statusCode = 200;
             res.setHeader('Content-type','application/json');
-            res.json(comps);
+            res.json(emps);
         },(err)=>next(err))
         .catch((err)=>next(err))
 })
 .post((req,res,next)=>{
-    companies.create(req.body)
-    .then((comp)=>{
-        console.log('company added',comp);
+    employees.create(req.body)
+    .then((emp)=>{
+        console.log('employee added',emp);
         res.statusCode = 200;
         res.setHeader('Content-type','application/json');
-        res.json(comp);
+        res.json(emp);
 
     },(err)=>next(err))
     .catch((err)=>next(err))
 });
-companyRouter.route('/:compId')
+employeeRouter.route('/:empId')
 .put((req,res,next)=>{
-    companies.findByIdAndUpdate(req.params.compId,{
+    companies.findByIdAndUpdate(req.params.empId,{
         $set:req.body
     },{new:true})
     .then((resp)=>{
@@ -41,7 +41,7 @@ companyRouter.route('/:compId')
     .catch((err)=>next(er))
 })
 .delete((req,res,next)=>{
-    companies.findByIdAndRemove(req.params.compId)
+    companies.findByIdAndRemove(req.params.empId)
     .then((resp)=>{
         res.statusCode = 200;
         res.setHeader('Content-type','application/json');
@@ -49,4 +49,4 @@ companyRouter.route('/:compId')
     },(err=>next(err)))
     .catch((err)=>next(err))
 });
-module.exports  = companyRouter;
+module.exports  = employeeRouter;

@@ -11,7 +11,7 @@ const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const Users = require('./models/users');
 const userRouter = require('./routes/users');
-const compRouter = require('./routes/companies');
+const empRouter = require('./routes/employees');
 const url = 'mongodb://localhost:27017/aait';
 const connect = mongoose.connect(url);
 //for enabling cors
@@ -30,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //app.use(cors);
 app.use('/users',userRouter);
-app.use('/companies',compRouter);
+app.use('/employees',empRouter);
 
 connect.then((db)=>{
     console.log('connected correctly to the server');

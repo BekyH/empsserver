@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const companySchema = new Schema({
+const employeeSchema = new Schema({
     name:{
         type:String,
         required:true
@@ -19,10 +19,10 @@ const companySchema = new Schema({
         required:true
 
     },
-    category:{
+    address:{
         type:String,
         required:true
     }
 });
-const companies = mongoose.model('Company',companySchema);
-module.exports = companies;
+const employees = mongoose.model('Employee',employeeSchema);
+module.exports = employees;

@@ -6,8 +6,8 @@ const Users = require('../models/users');
 var userRouter = express.Router();
 userRouter.use(bodyparser.json());
 userRouter.route('/')
-.options(cors.corsWithOptions, (req, res) => { 
-  res.sendStatus(200); })
+// .options( (req, res) => { 
+//   res.sendStatus(200); })
 .get((req,res,next)=>{
     Users.find({})
     .then((users)=>{
