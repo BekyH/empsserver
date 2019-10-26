@@ -8,7 +8,7 @@ userRouter.use(bodyparser.json());
 userRouter.route('/')
 .options(cors.corsWithOptions, (req, res) => { 
   res.sendStatus(200); })
-.get(cors.cors,(req,res,next)=>{
+.get((req,res,next)=>{
     Users.find({})
     .then((users)=>{
       res.statusCode = 200;
@@ -19,7 +19,7 @@ userRouter.route('/')
     .catch((err)=>next(err))
   
 })
-.post(cors.corsWithOptions,(req,res,next)=>{
+.post((req,res,next)=>{
     Users.create(req.body)
     .then((user)=>{
       console.log('user created',user);
